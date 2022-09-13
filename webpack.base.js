@@ -7,9 +7,13 @@ const HtmlWebpackPlugin      = require("html-webpack-plugin");
 const CopyWebpackPlugin      = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-
+// docs: https://v4.webpack.docschina.org/configuration
 module.exports = {
   entry: "./src/main.js",
+
+  externals: {
+    _: 'lodash', // 引用外部的cdn
+  },
 
   output: {
     path: path.resolve(__dirname, "dist"),

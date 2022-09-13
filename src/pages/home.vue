@@ -8,6 +8,16 @@
 <script>
   export default {
     name: "",
+    created() {
+    // test externals
+      var obj = {
+        id: 1001,
+        name: 'hello world',
+      }
+      _.forIn(obj, (key, val, obj) => {
+        console.log('key, val, obj:', key, val, obj);
+      })
+    }
   }
 </script>
 
