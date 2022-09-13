@@ -1,13 +1,15 @@
 "use strict";
 
-const webpackMerge = require('webpack-merge');
-const baseConfig   = require('./webpack.base.js');
+const webpackMerge                   = require('webpack-merge');
+const baseConfig                     = require('./webpack.base.js');
+const { HotModuleReplacementPlugin } = require("webpack");
 
 module.exports = webpackMerge(baseConfig, {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
 
   devServer: {
+    hot: true,             // 自动更新
     port: 8080,            // 服务端监听端口
     compress: true,        // 压缩
     contentBase: './dist', // 指定提供内容的目录
@@ -18,6 +20,10 @@ module.exports = webpackMerge(baseConfig, {
       },
     },
   },
+
+  plugins: [
+    new HotModuleReplacementPlugin()
+  ],
 
   module: {
     rules: [

@@ -100,8 +100,9 @@ module.exports = {
             loader: "url-loader",
             options: {
               name: "[hash].[ext]",
-              outputPath: "images/",
+              outputPath: "images",
               limit: 1024 * 100, // 100k
+              esModule: false, // 不使用esModules使用commonJS
             },
           },
           {
@@ -145,11 +146,12 @@ module.exports = {
 
   plugins: [
     // 处理vue
-    new VueLoaderPlugin(),
     new webpack.DefinePlugin({
       __VUE_OPTIONS_API__: false,
       __VUE_PROD_DEVTOOLS__: false,
     }),
+
+    new VueLoaderPlugin(),
 
     // 将打包内容插入到html模板插件
     new HtmlWebpackPlugin({
