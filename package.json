@@ -10,6 +10,8 @@
   "author": "liaohui5",
   "license": "MIT",
   "description": "",
+  "//tree-shaking": "不要打包没有用到的代码(但是: css,less,scss 除外)",
+  "sideEffects": ["*.css", "*.less", "scss"],
   "devDependencies": {
     "@babel/core": "^7.18.13",
     "@babel/plugin-transform-runtime": "^7.18.10",
@@ -20,9 +22,13 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.2",
     "css-loader": "4.3",
+    "eslint": "^6.8.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-vue": "^9.4.0",
     "file-loader": "5.1",
     "html-webpack-plugin": "4.5",
     "image-webpack-loader": "^6.0.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.8",
     "postcss": "^7.0.39",
     "postcss-loader": "^3.0.0",
     "postcss-sprites": "^4.2.1",
@@ -46,6 +52,8 @@
     "vuex": "^3.6.2"
   },
   "resolve": {
-    "@": ["src"]
+    "@": [
+      "src"
+    ]
   }
 }

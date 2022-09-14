@@ -6,19 +6,19 @@
 </template>
 
 <script>
-  export default {
-    name: "",
-    created() {
+export default {
+  name: "home",
+  created() {
     // test externals
-      var obj = {
-        id: 1001,
-        name: 'hello world',
-      }
-      _.forIn(obj, (key, val, obj) => {
-        console.log('key, val, obj:', key, val, obj);
-      })
-    }
-  }
+    var obj = {
+      id: 1001,
+      name: "hello world",
+    };
+    _.forIn(obj, (key, val, obj) => {
+      console.log("key, val, obj:", key, val, obj);
+    });
+  },
+};
 </script>
 
 <style lang="scss" scoped>

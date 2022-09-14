@@ -1,12 +1,13 @@
 # 学习 webpack 搭建的配置项目
 
-[x] 配置基本的css/js               & 同步笔记
-[x] 配置scss/less/es678            & 同步笔记 
-[x] 配置vue-loader/sfc             & 同步笔记
-[x] 配置resolve解析                & 同步笔记
-[x] 配置HMR                        & 同步笔记
-[x] 配置externals cdn解析          & 同步笔记
-[ ] 切分文件js/css                 & 同步笔记
-[ ] tree-shaking移除无用代码js/css & 同步笔记
-[ ] eslint代码检查                 & 同步笔记
-[ ] 多线程优化打包速度             & 同步笔记
+[x] 配置基本的 css/js
+[x] 配置 scss/less/es678
+[x] 配置 vue-loader/sfc  
+[x] 配置 resolve 解析
+[x] 配置 HMR
+[x] 配置 externals cdn 解析
+[x] 切分文件 js/css
+[x] 合并雪碧图 js/css
+[ ] eslint 代码检查
+[ ] tree-shaking 移除无用代码 js/css
+[ ] 多线程优化打包速度
