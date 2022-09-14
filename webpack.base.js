@@ -17,7 +17,7 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name][hash].js",
   },
 
   resolve: {
@@ -72,13 +72,6 @@ module.exports = {
               ],
             },
           },
-          /* {
-            loader: "eslint-loader",
-            options: {
-              enforce: "pre",
-              fix: true,
-            },
-          }, */
         ],
       },
 
@@ -106,7 +99,7 @@ module.exports = {
               name: "[hash].[ext]",
               outputPath: "images",
               limit: 1024 * 100, // 100k
-              esModule: false, // 不使用esModules使用commonJS
+              esModule: false,   // 不使用esModules使用commonJS
             },
           },
           {

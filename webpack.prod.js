@@ -8,11 +8,16 @@ module.exports = webpackMerge(baseConfig, {
   mode: 'production',
   devtool: 'cheap-module-source-map',
 
-  // 优化压缩选项
   optimization: {
+    // 压缩
     minimizer: [
       new TerserJSPlugin({}),
       new OptimizeCSSAssetsPlugin({}),
-    ]
+    ],
+
+    // 分割代码
+    splitChunks: {
+      chunks: "all"
+    },
   },
 });
