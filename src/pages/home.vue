@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div id="home">
     <p>home</p>
     <img src="../assets/logo.png" class="img" />
+    <button @click="load">async loading</button>
   </div>
 </template>
 
@@ -17,6 +18,16 @@ export default {
     _.forIn(obj, (key, val, obj) => {
       console.log("key, val, obj:", key, val, obj);
     });
+  },
+  methods: {
+    async load() {
+      // 预加载
+      /* https://v4.webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules */
+      // webpackPrefetch: 预加载
+      // webpackChunkName: 分割代码打包的时候文件名
+      const { default: $ } = await import(/* webpackPrefetch: true *//* webpackChunkName: "jquery" */"jquery");
+      $("#home").append($("<div>异步加载的div<div>")[0])
+    },
   },
 };
 </script>

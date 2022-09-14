@@ -9,5 +9,5 @@
 [x] 切分文件 js/css
 [x] 合并雪碧图 js/css
 [ ] eslint 代码检查
-[ ] tree-shaking 移除无用代码 js/css
+[x] tree-shaking 移除无用js代码
 [ ] 多线程优化打包速度

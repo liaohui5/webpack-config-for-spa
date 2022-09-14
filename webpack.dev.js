@@ -11,7 +11,8 @@ module.exports = webpackMerge(baseConfig, {
 
   // 告诉webpack, 不要打包没有用到的代码,
   // production 模式下, 默认就会过滤没有用到的代码
-  // 不需要额外配置
+  // 不需要额外配置, 注意需要再package.json中
+  // 排除掉 css/less/scss 不要去 tree-shaking
   optimization: {
     usedExports: true,
   },
@@ -30,7 +31,6 @@ module.exports = webpackMerge(baseConfig, {
   },
 
   plugins: [new HotModuleReplacementPlugin()],
-
   module: {
     rules: [
       // TODO: 查验vue-cli 创建的项目 eslint/loader 版本

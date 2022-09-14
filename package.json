@@ -11,7 +11,11 @@
   "license": "MIT",
   "description": "",
   "//tree-shaking": "不要打包没有用到的代码(但是: css,less,scss 除外)",
-  "sideEffects": ["*.css", "*.less", "scss"],
+  "sideEffects": [
+    "*.css",
+    "*.less",
+    "scss"
+  ],
   "devDependencies": {
     "@babel/core": "^7.18.13",
     "@babel/plugin-transform-runtime": "^7.18.10",
@@ -46,6 +50,7 @@
   "dependencies": {
     "@babel/runtime": "^7.18.9",
     "@babel/runtime-corejs2": "^7.18.9",
+    "jquery": "^3.6.1",
     "normalize.css": "^8.0.1",
     "vue": "2.6",
     "vue-router": "^3.6.4",

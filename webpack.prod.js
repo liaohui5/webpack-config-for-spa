@@ -15,7 +15,8 @@ module.exports = webpackMerge(baseConfig, {
       new OptimizeCSSAssetsPlugin({}),
     ],
 
-    // 分割代码
+    // 分割代码(如果不配置,默认只会分割异步加载的代码)
+    // https://v4.webpack.js.org/guides/lazy-loading/#example
     splitChunks: {
       chunks: "all"
     },
