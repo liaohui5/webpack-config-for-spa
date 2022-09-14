@@ -21,4 +21,19 @@ module.exports = webpackMerge(baseConfig, {
       chunks: "all"
     },
   },
+
+  module: {
+    rules: [
+      // 处理样式
+      {
+        test: /\.(c|sc)ss$/,
+        use: [
+          "vue-style-loader",
+          "css-loader",
+          "sass-loader",
+          "postcss-loader",
+        ],
+      },
+    ]
+  }
 });

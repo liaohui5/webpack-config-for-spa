@@ -96,9 +96,9 @@ module.exports = {
           {
             loader: "url-loader",
             options: {
-              name: "[hash].[ext]",
+              name: "[contenthash].[ext]",
               outputPath: "images",
-              limit: 1024 * 100, // 100k
+              limit: 1024 * 100, // 100k, 如果需要查看雪碧图效果, 需要把这个值调小
               esModule: false,   // 不使用esModules使用commonJS
             },
           },
@@ -127,17 +127,6 @@ module.exports = {
           },
         ],
       },
-
-      // 处理样式
-      {
-        test: /\.(c|sc)ss$/,
-        use: [
-          "vue-style-loader",
-          "css-loader",
-          "sass-loader",
-          "postcss-loader",
-        ],
-      },
     ],
   },
 
@@ -160,9 +149,6 @@ module.exports = {
       },
     }),
 
-    // 清除上一次打包结果插件
-    new CleanWebpackPlugin(),
-
     // 复制静态文件插件
     new CopyWebpackPlugin([
       {
@@ -170,5 +156,8 @@ module.exports = {
         to: "./docs",
       },
     ]),
+
+    // 清除上一次打包结果插件
+    new CleanWebpackPlugin(),
   ],
 };

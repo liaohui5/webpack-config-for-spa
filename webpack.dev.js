@@ -44,6 +44,16 @@ module.exports = webpackMerge(baseConfig, {
           fix: true,
         },
       }, */
+
+      // 处理样式
+      {
+        test: /\.(c|sc)ss$/,
+        use: [
+          "vue-style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
+      },
     ],
   },
 });
