@@ -33,17 +33,17 @@ module.exports = webpackMerge(baseConfig, {
   plugins: [new HotModuleReplacementPlugin()],
   module: {
     rules: [
-      // TODO: 查验vue-cli 创建的项目 eslint/loader 版本
-      /* {
+      // 检查代码格式
+      {
         enforce: "pre",
         test: /\.(js|vue)$/,
-        exclude: /node_modules/,
+        exclude: /node_modules/i,
         include: resolve(__dirname, "./src"),
         loader: "eslint-loader",
         options: {
-          fix: true,
+          fix: true, // 保存的时候自动fix
         },
-      }, */
+      },
 
       // 处理样式
       {

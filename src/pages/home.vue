@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "home",
+  name: "Home",
   created() {
     // test externals
     var obj = { id: 1001, name: "hello world" };

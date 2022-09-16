@@ -16,11 +16,10 @@ const routes = [
     path: "/about",
     name: "About",
     component: About,
-  }
+  },
 ];
 
 export default new Router({
-  mode: 'hash',
+  mode: "hash",
   routes,
 });
-

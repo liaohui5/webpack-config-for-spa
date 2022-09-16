@@ -60,6 +60,7 @@ module.exports = {
         ],
       },
 
+      // 处理图片文件
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
