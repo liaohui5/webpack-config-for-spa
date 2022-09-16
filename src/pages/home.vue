@@ -6,33 +6,39 @@
       <img src="../assets/logo.png" class="img" />
     </div>
     <button @click="load">async loading</button>
+    <button @click="getPiniaVal">获取pinia中的值</button>
   </div>
 </template>
 
-<script>
-export default {
-  name: "Home",
-  created() {
-    // test externals
-    var obj = { id: 1001, name: "hello world" };
-    _.forIn(obj, (key, val, obj) => {
-      console.log("key, val, obj:", key, val, obj);
-    });
-  },
-  methods: {
-    async load() {
-      // 预加载: https://v4.webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules
-      // webpackPrefetch: 预加载
-      // webpackChunkName: 分割代码打包的时候文件名
-      const { default: $ } = await import(
-        /* webpackPrefetch: true */
-        /* webpackChunkName: "jquery" */
-        "jquery"
-      );
-      $("#home").append($("<div>异步加载jquery创建的div<div>")[0]);
-    },
-  },
+<script setup>
+import { useStore } from "@/store/index.js";
+
+// 测试 externals
+var obj = {
+  id: 1001,
+  name: "hello world",
 };
+_.forIn(obj, (key, val, obj) => {
+  console.log("key, val, obj:", key, val, obj);
+});
+
+// 测试pinia
+const store = useStore();
+function getPiniaVal() {
+  console.log("pinia-getters-isLogin:", store.isLogin);
+}
+
+async function load() {
+  // 预加载: https://v4.webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules
+  // webpackPrefetch: 预加载
+  // webpackChunkName: 分割代码打包的时候文件名
+  const { default: $ } = await import(
+    /* webpackPrefetch: true */
+    /* webpackChunkName: "jquery" */
+    "jquery"
+  );
+  $("#home").append($("<div>异步加载jquery创建的div<div>")[0]);
+}
 </script>
 
 <style lang="scss" scoped>
@@ -43,3 +49,5 @@ export default {
   max-height: 200px;
 }
 </style>
+
+

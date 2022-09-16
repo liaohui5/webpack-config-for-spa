@@ -22,7 +22,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".vue", ".js", ".jsx", ".json"],
+    extensions: [".vue", ".js", ".mjs", ".jsx", ".json"],
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "~": path.resolve(__dirname, "./src/assets"),
@@ -31,6 +31,13 @@ module.exports = {
 
   module: {
     rules: [
+      // 处理mjs
+      {
+        test:/\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto"
+      },
+
       // 处理 vue
       {
         test: /\.vue$/,

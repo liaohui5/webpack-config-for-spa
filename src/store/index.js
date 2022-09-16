@@ -1,10 +1,16 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import { defineStore } from "pinia";
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
-  state: {
-    msg: "hello",
+export const useStore = defineStore("main", {
+  state: () => ({
+    // authUser: null,
+    authUser: {
+      id: 1001,
+      username: "tom",
+      token: "login-token-string",
+    },
+  }),
+  getters: {
+    // 是否登录
+    isLogin: (state) => !!state.authUser,
   },
 });
