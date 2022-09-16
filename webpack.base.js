@@ -2,7 +2,6 @@
 
 const path = require("path");
 const webpack = require("webpack");
-const { VueLoaderPlugin } = require("vue-loader");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -22,7 +21,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".vue", ".js", ".jsx", ".json"],
+    extensions: [".js", ".jsx", ".json"],
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "~": path.resolve(__dirname, "./src/assets"),
@@ -31,16 +30,9 @@ module.exports = {
 
   module: {
     rules: [
-      // 处理 vue
-      {
-        test: /\.vue$/,
-        include: path.resolve(__dirname, "src"),
-        use: "vue-loader",
-      },
-
       // 处理 js
       {
-        test: /\.js$/,
+        test: /\.js|jsx$/,
         exclude: /node_modules/, // 排除 node_modules 目录
         include: path.resolve(__dirname, "src"),
         use: "happypack/loader?id=js",
@@ -110,7 +102,10 @@ module.exports = {
         {
           loader: "babel-loader",
           options: {
-            presets: [["@babel/preset-env", { targets: { chrome: "50" } }]],
+            presets: [
+              ["@babel/preset-env", { targets: { chrome: "50" } }],
+              ["@babel/preset-react", { runtime: "automatic" }],
+            ],
             plugins: [
               // babel plugin
               [
@@ -129,21 +124,13 @@ module.exports = {
       ],
     }),
 
-    // 处理vue
-    new webpack.DefinePlugin({
-      __VUE_OPTIONS_API__: false,
-      __VUE_PROD_DEVTOOLS__: false,
-    }),
-
-    new VueLoaderPlugin(),
-
     // 将打包内容插入到html模板插件
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "./public/index.html"),
       minify: {
         collapseWhitespace: true, // 删除空格和换行
-        removeComments: true,     // 删除注释
-        useShortDoctype: true,    // 使用 html5 的的 doctype
+        removeComments: true, // 删除注释
+        useShortDoctype: true, // 使用 html5 的的 doctype
       },
     }),
 

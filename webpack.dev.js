@@ -1,9 +1,9 @@
 "use strict";
 /* eslint-disable */
-const { resolve }                    = require("path");
+const { resolve } = require("path");
 const { HotModuleReplacementPlugin } = require("webpack");
-const webpackMerge                   = require("webpack-merge");
-const baseConfig                     = require("./webpack.base.js");
+const webpackMerge = require("webpack-merge");
+const baseConfig = require("./webpack.base.js");
 
 module.exports = webpackMerge(baseConfig, {
   mode: "development",
@@ -18,11 +18,12 @@ module.exports = webpackMerge(baseConfig, {
   },
 
   devServer: {
-    hot: true,             // 自动更新
-    port: 8080,            // 服务端监听端口
-    compress: true,        // 压缩
+    hot: true, // 自动更新
+    port: 8080, // 服务端监听端口
+    compress: true, // 压缩
     contentBase: "./dist", // 指定提供内容的目录
-    proxy: {               // 请求代理设置
+    proxy: {
+      // 请求代理设置
       "^/api": {
         target: "http://localhost:3000/api",
         secure: false,
@@ -36,22 +37,27 @@ module.exports = webpackMerge(baseConfig, {
       // 检查代码格式
       {
         enforce: "pre",
-        test: /\.(js|vue)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/i,
         include: resolve(__dirname, "./src"),
         loader: "eslint-loader",
         options: {
-          fix: true, // 保存的时候自动fix
+          fix: false, // 保存的时候自动fix
         },
       },
 
       // 处理样式
       {
         test: /\.(c|sc)ss$/,
+        include: resolve(__dirname, "./src"),
         use: [
-          "vue-style-loader",
-          "css-loader",
-          "sass-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            }
+          },
+          { loader: "sass-loader" },
         ],
       },
     ],

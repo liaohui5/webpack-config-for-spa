@@ -5,20 +5,18 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['plugin:vue/recommended', 'plugin:prettier-vue/recommended'],
+  extends: ["eslint:recommended", "plugin:react/recommended"],
   overrides: [],
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: 10,
     sourceType: "module",
     ecmaFeatures: {
       jsx: true,
     },
   },
-  plugins: ["vue"],
-  globals: {
-    _: "readonly", // lodash
-  },
+  plugins: ["react"],
   rules: {
-    "vue/multi-word-component-names": ["off"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
   },
 };

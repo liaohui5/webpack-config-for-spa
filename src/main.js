@@ -1,13 +1,15 @@
-import Vue from "vue";
-import router from "@/router";
-import store from "@/store";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { HashRouter as Router } from "react-router-dom";
 import App from "@/App";
-import "normalize.css";
 import "~/global.scss";
 
-new Vue({
-  el: "#app",
-  router,
-  store,
-  render: (h) => h(App),
-});
+const root = ReactDOM.createRoot(document.querySelector("#app"));
+
+root.render(
+  <React.StrictMode>
+    <Router>
+      <App />
+    </Router>
+  </React.StrictMode>
+);

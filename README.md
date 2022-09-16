@@ -24,3 +24,7 @@
 - webpack.dev.js: 打包配置
 - webpack.prd.js: 开发配置
 
+## branchs
+- main: webpack config for vue2 project
+- vue3: webpack config for vue3 project
+- react: webpack config for react project

@@ -28,7 +28,6 @@ module.exports = webpackMerge(baseConfig, {
       {
         test: /\.(c|sc)ss$/,
         use: [
-          "vue-style-loader",
           "css-loader",
           "sass-loader",
           "postcss-loader",
