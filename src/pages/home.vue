@@ -1,8 +1,10 @@
 <template>
   <div id="home">
     <p>home</p>
-    <img src="../assets/logo.png" class="img" />
-    <img src="../assets/IeoTkE4xBJ4.jpg" class="bigimg" />
+    <div>
+      <img src="../assets/IeoTkE4xBJ4.jpg" class="bigimg" />
+      <img src="../assets/logo.png" class="img" />
+    </div>
     <button @click="load">async loading</button>
   </div>
 </template>
@@ -19,8 +21,7 @@ export default {
   },
   methods: {
     async load() {
-      // 预加载
-      /* https://v4.webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules */
+      // 预加载: https://v4.webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules
       // webpackPrefetch: 预加载
       // webpackChunkName: 分割代码打包的时候文件名
       const { default: $ } = await import(
@@ -28,7 +29,7 @@ export default {
         /* webpackChunkName: "jquery" */
         "jquery"
       );
-      $("#home").append($("<div>异步加载的div<div>")[0]);
+      $("#home").append($("<div>异步加载jquery创建的div<div>")[0]);
     },
   },
 };
@@ -36,9 +37,9 @@ export default {
 
 <style lang="scss" scoped>
 .img {
-  max-width: 300px;
+  max-width: 200px;
 }
 .bigimg {
-  max-width: 600px;
+  max-height: 200px;
 }
 </style>

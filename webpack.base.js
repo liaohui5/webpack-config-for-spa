@@ -1,18 +1,19 @@
 "use strict";
 
-const path                   = require("path");
-const webpack                = require("webpack");
-const { VueLoaderPlugin }    = require("vue-loader");
-const HtmlWebpackPlugin      = require("html-webpack-plugin");
-const CopyWebpackPlugin      = require("copy-webpack-plugin");
+const path = require("path");
+const webpack = require("webpack");
+const { VueLoaderPlugin } = require("vue-loader");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Happypack = require("happypack");
 
 // docs: https://v4.webpack.docschina.org/configuration
 module.exports = {
   entry: "./src/main.js",
 
   externals: {
-    _: 'lodash', // 引用外部的cdn
+    _: "lodash", // 引用外部的cdn
   },
 
   output: {
@@ -30,7 +31,7 @@ module.exports = {
 
   module: {
     rules: [
-      // 处理 vue 
+      // 处理 vue
       {
         test: /\.vue$/,
         include: path.resolve(__dirname, "src"),
@@ -42,37 +43,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/, // 排除 node_modules 目录
         include: path.resolve(__dirname, "src"),
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                [
-                  "@babel/preset-env",
-                  {
-                    targets: {
-                      chrome: "50",
-                    },
-                  },
-                ],
-              ],
-
-              // babel 插件
-              plugins: [
-                [
-                  "@babel/plugin-transform-runtime",
-                  {
-                    absoluteRuntime: false,
-                    corejs: 2, // 不污染全局作用域
-                    helpers: true,
-                    regenerator: true,
-                    useESModules: false,
-                  },
-                ],
-              ],
-            },
-          },
-        ],
+        use: "happypack/loader?id=js",
       },
 
       // 处理字体
@@ -89,7 +60,6 @@ module.exports = {
         ],
       },
 
-      // 处理图片
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
@@ -99,7 +69,7 @@ module.exports = {
               name: "[contenthash:8].[ext]",
               outputPath: "images",
               limit: 1024 * 100, // 100k, 如果需要查看雪碧图效果, 需要把这个值调小
-              esModule: false,   // 不使用esModules使用commonJS
+              esModule: false, // 不使用esModules使用commonJS
             },
           },
           {
@@ -131,6 +101,33 @@ module.exports = {
   },
 
   plugins: [
+    // 多线程打包js
+    new Happypack({
+      id: "js",
+      threads: 4,
+      loaders: [
+        {
+          loader: "babel-loader",
+          options: {
+            presets: [["@babel/preset-env", { targets: { chrome: "50" } }]],
+            plugins: [
+              // babel plugin
+              [
+                "@babel/plugin-transform-runtime",
+                {
+                  absoluteRuntime: false,
+                  corejs: 2, // 不污染全局作用域
+                  helpers: true,
+                  regenerator: true,
+                  useESModules: false,
+                },
+              ],
+            ],
+          },
+        },
+      ],
+    }),
+
     // 处理vue
     new webpack.DefinePlugin({
       __VUE_OPTIONS_API__: false,
