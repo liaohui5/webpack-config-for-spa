@@ -17,7 +17,7 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name][hash].js",
+    filename: "[name].[hash:8].js",
   },
 
   resolve: {
@@ -96,7 +96,7 @@ module.exports = {
           {
             loader: "url-loader",
             options: {
-              name: "[contenthash].[ext]",
+              name: "[contenthash:8].[ext]",
               outputPath: "images",
               limit: 1024 * 100, // 100k, 如果需要查看雪碧图效果, 需要把这个值调小
               esModule: false,   // 不使用esModules使用commonJS
