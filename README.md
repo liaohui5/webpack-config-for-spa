@@ -10,7 +10,7 @@
 - [x] 合并雪碧图 js/css
 - [x] tree-shaking 移除无用js代码
 - [x] 多线程优化打包速度
-- [ ] eslint 代码检查
+- [x] eslint 代码检查
 
 ## scripts
 
