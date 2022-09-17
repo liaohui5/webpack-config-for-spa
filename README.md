@@ -12,6 +12,12 @@
 - [x] 多线程优化打包速度
 - [x] eslint 代码检查
 
+## branchs
+
+- main: webpack config for vue2
+- vue3: webpack config for vue3
+- react: webpack config for react
+
 ## scripts
 
 - dev: 启动 dev-server
